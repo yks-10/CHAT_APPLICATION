@@ -1,6 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
-from chat.models import Room
+from chat.models import Room, Message
 
 
 def index_view(request):
@@ -9,4 +9,5 @@ def index_view(request):
 
 def room_view(request, room_name):
     chat_room, created = Room.objects.get_or_create(name=room_name)
-    return render(request, 'chat/room.html', { 'room': chat_room,})
+    x=Message.objects.filter(room=chat_room)
+    return render(request, 'chat/room.html', { 'room': chat_room,'x':x})

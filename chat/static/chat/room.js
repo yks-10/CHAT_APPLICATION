@@ -6,6 +6,8 @@ let chatLog = document.querySelector("#chatLog");
 let chatMessageInput = document.querySelector("#chatMessageInput");
 let chatMessageSend = document.querySelector("#chatMessageSend");
 let onlineUsersSelector = document.querySelector("#onlineUsersSelector");
+let exit = document.querySelector("#exit");
+
 
 
 function onlineUsersSelectorAdd(value) {
@@ -28,7 +30,7 @@ chatMessageInput.focus();
 
 
 chatMessageInput.onkeyup = function(e) {
-    if (e.keyCode === 13) {  // enter key
+    if (e.keyCode === 13) {
         chatMessageSend.click();
     }
 };
@@ -91,8 +93,6 @@ function connect() {
                 console.error("Unknown message type!");
                 break;
         }
-
-
         chatLog.scrollTop = chatLog.scrollHeight;
     };
 
@@ -109,3 +109,7 @@ onlineUsersSelector.onchange = function() {
     onlineUsersSelector.value = null;
     chatMessageInput.focus();
 };
+
+document.querySelector("#exit").onclick = function() {
+    window.history.back();
+}
